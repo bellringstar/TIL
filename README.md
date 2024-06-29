@@ -11,7 +11,9 @@
 ### [인터페이스](./240628/Interface.md)
 ---
 # Computer Science
-
+## 컴퓨터 구조
+### [명령어 병렬 처리 기법](./240629/ILP.md)
+### [ISA](./240629/ISA.md)
 ---
 # Cache
 

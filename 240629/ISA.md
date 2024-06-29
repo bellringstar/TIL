@@ -1,0 +1,3 @@
+# ISA
+## CISC
+## RISC

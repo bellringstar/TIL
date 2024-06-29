@@ -9,11 +9,14 @@
 ### [동적 디스패치](./240627/DynamicDipatch.md)
 ### [오버라이드](./240628/Override.md)
 ### [인터페이스](./240628/Interface.md)
+### [Thread](./240629/Thread.md)
+
 ---
 # Computer Science
 ## 컴퓨터 구조
 ### [명령어 병렬 처리 기법](./240629/ILP.md)
 ### [ISA -> CISC/RISC](./240629/ISA.md)
+
 ---
 # Cache
 

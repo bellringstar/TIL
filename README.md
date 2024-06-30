@@ -23,3 +23,6 @@
 ### [Thundering Herd](./240626/Thundering-Herd.md)
 
 ---
+# Architecture
+
+### [Hexagonal Architecture](./240630/Hexagonal-Architecture.md)

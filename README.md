@@ -18,6 +18,10 @@
 ### [ISA -> CISC/RISC](./240629/ISA.md)
 
 ---
+# Spring
+## 설정
+### [hibernate.jdbc.batch_size](./240630/hibernate.jdbc.batch_size.md)
+---
 # Cache
 
 ### [Thundering Herd](./240626/Thundering-Herd.md)

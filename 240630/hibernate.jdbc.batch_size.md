@@ -1,0 +1,1 @@
+# hibernate.jdbc.batch_size

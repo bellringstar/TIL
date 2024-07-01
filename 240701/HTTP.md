@@ -1,137 +1,202 @@
 # HTTP
-
-## HTTP 기본 개념
-### HTTP란 무엇인가?
-- HTTP(Hypertext Transfer Protocol)는 웹에서 데이터를 주고받기 위한 애플리케이션 계층 프로토콜입니다.
-- 클라이언트(주로 웹 브라우저)와 서버 간의 통신 규악을 정의합니다.
-- 왜 중요한가?
-  - 웹의 기반 기술로, 거의 모든 온라인 활동의 근간이 됩니다.
-  - RESTful API, 웹 서비스 등 현대 웹 애플리케이션 개발의 핵심입니다.
-### HTTP의 특징
-- 클라이언트-서버 모델 : 요청-응답 구조로 동작합니다.
-- Stateless(무상태) : 각 요청은 독립적으로 처리됩니다.
-- Connectionless(비연결성) : 요청-응답 후 연결을 종료합니다.
-- 어떻게 동작하는가?
-  - 클라이언트가 서버에 request를 보냅니다.
-  - 서버는 요청을 처리하고 response을 반환합니다.
-  - 응답 후 연결이 종료됩니다.
-  - HTTP 메시지 구조
-### Request 메시지 구조
-- 시작줄(Start Line) : 메서드, URL, HTTP 버전
-- 헤더(Headers) : 요청에 대한 추가 정보
-- 비 준(Empty Line) : 헤더의 끝을 나타냄
-- 본문(Body) : 전송할 데이터(선택적)
+## HTTP 요청-응답 사이클
+HTTP는 클라이언트-서버 모델을 기반으로 동작하며 다음과 같은 단계로 진행됩니다.
+1. 클라이언트가 서버에 요청 전송
+2. 서버가 요청을 처리
+3. 서버가 클라이언트에 응답 전송
+### TCP 연결 설정
+HTTP/1.1 이상에서는 기본적으로 지속 연결을 사용합니다. 연결 과정은 다음과 같습니다.
+1. TCP 3-way handshake
+2. (선택적) TLS handshake(HTTPS의 경우)
+```java
+Socket socket = new Socket("example.com", 80);
+OutputStream out = socket.getOutputStream();
+InputStream in = socket.getInputStream();
+```
+### 요청 구조
+HTTP 요청은 다음 구조를 가집니다.
+1. 요청 라인: 메서드, URI, HTTP 버전
+2. 헤더 필드
+3. 빈줄
+4. 메시지 본문(선택)
 ```markdown
 GET /index.html HTTP/1.1
 Host: www.example.com
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
-Accept: text/html,application/xhtml+xml
+User-Agent: Mozilla/5.0
+Accept: text/html
 ```
-### Response 메시지 구조
-- 상태줄(Status Line) : HTTP 버전, 상태 코드, 상태 메시지
-- 헤더 (Headers) : 응답에 대한 추가 정보
-- 빈 줄(Empty Line)
-- 본문(Body) : 응답 데이터
+```java
+URL url = new URL("http://example.com");
+HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+conn.setRequestMethod("GET");
+conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+int responseCode = conn.getResponseCode();
+```
+### 응답 구조
+HTTP 응답은 다음 구조를 가집니다.
+1. 상태 라인: HTTP 버전, 상태 코드, 상태 메시지
+2. 헤더 필드
+3. 빈 줄
+4. 메시지 본문
 ```markdown
 HTTP/1.1 200 OK
-Date: Mon, 23 May 2023 22:38:34 GMT
-Content-Type: text/html; charset=UTF-8
-Content-Length: 138
+Content-Type: text/html
+Content-Length: 1234
 
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Example Page</title>
-</head>
-<body>
-  <h1>Hello, World!</h1>
-</body>
-</html>
+<html>...
 ```
-- 왜 이런 구조인가?
-  - 구조화된 형식으로 정보를 전달하여 해석과 처리를 용이하게 합니다.
-  - 확장성을 제공하여 새로운 기능을 쉽게 추가할 수 있습니다.
-## HTTP 메서드
-- GET : 리소스 조회
-- POST : 리소스 생성
-- PUT : 리소스 수정
-- DELETE : 리소스 삭제
-- PATCH : 리소스 부분 수정
-- HEAD : 헤더 정보만 조회
-- OPTIONS : 지원되는 메서드 조회
-- 어째서 이렇게 많은 메서드가 존재할까?
-  - RESTful 설계 원칙에 좋다
-  - 각 작업의 의도를 명확히 하여 서버 로직 처리를 용이하게 한다.
-## HTTP 상태 코드
-- 1XX : 정보 응답
-- 2XX : 성공
-- 3XX : 리다이렉션
-- 4XX : 클라이언트 오류
-- 5XX : 서버 오류
-### 자주 사용되는 상태 코드
-- 200 OK : 요청 성공
-- 201 Created : 리소스 생성 성공
-- 400 Bad Reqeust : 잘못된 요청
-- 404 Not Found : 리소스를 찾을 수 없음
-- 500 Internal Server Error : 서버 내부 오류
-
-## HTTP 헤더
-- General Headers : 요청과 응답 모두에 적용되는 일반 정보 
-- Request Headers : 요청에 대한 추가 정보나 조건 설정
-- Response Headers : 응답에 대한 추가 정보 제공
-- Entity Headers : 메시지 본문에 대한 정보
-### 중요 헤더 예시
-- Content-Type : 본문의 미디어 타입
-- Authorization : 인증 토큰
-- Cache-Control : zotld ehdwkr wlwjd
-- Cookie/Set-Cookie : 쿠키 정보
-### 왜 헤더가 중요한가?
-- 메타데이터를 제공하여 HTTP 메시지를 더 잘 이해하고 처리할 수 있게 합니다.
-- 보안, 성능 최적화, 세션 관리 등 다양한 기능을 구현할 수 있습니다.
-## HTTP/2
-### 주요 특징
-- 멀티플렉싱 : 하나의 연결로 여러 요청/응답 처리
-- 헤더 압축 : HPACK을 사용한 헤더 압축
-- 서버 푸시 : 클라이언트 요청 없이 리소스 전송
-### 왜 도입되었는가?
-- HTTP/1.1의 성능 한계를 극복하기 위해
-- 웹 페이지 로딩 속도 향상
-## HTTP/3
-### 주요 특징
-- QUIC 프로토콜 사용
-- UDP 기반으로 동작
-- 연결 설정 시간 단축
-### 왜 중요한가?
-- 모바일 환경에서의 성능 개선
-- 네트워크 전환 시 연결 유지 용이
----
-## HTTP의 기술적 동작 원리
-### TCP/IP 연결 설정
-HTTP는 응용 계층 프로토콜로, 전송 계층의 TCP(Transmission Control Protocol)을 기반으로 동작합니다.
-- 클라이언트가 서버의 IP 주소와 포트 번호(기본80)로 TCP 연결을 시도합니다.
-- 3-way handshake를 통해 연결이 설정됩니다.
-  - 클라이언트가 SYN 패킷 전송
-  - 서버가 SYN-ACK 패킷으로 응답
-  - 클라이언트가 ACK 패킷 전송
-- 왜 중요한가?
-  - 신뢰성 있는 데이터 전송을 보장합니다.
-  - 연결 지향적 프로토콜로, 패킷 손실과 순서 문제를 해결합니다.
-### HTTP 요청 생성 및 전송
-클라이언트는 HTTP 요청 메시지를 생성하고 TCP 스트림을 통해 전송합니다.
-```markdown
-METHOD /path HTTP/1.1
-Host: www.example.com
-Other-headers: values
-
-Request Body (optional)
+```java
+BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+String inputLine;
+StringBuilder response = new StringBuilder();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
 ```
-- 요청 라인: 메서드, URI, HTTP 버전을 공백으로 구분하여 명시
-- 헤더: 각 줄은 '이름:값'형식, CRLF로 구분
-- 빈 줄: 헤더의 끝을 나타내는 CRLF
-- 본문: 필요시 포함
-### 서버의 요청 처리
-서버는 TCP 스트림으로 부터 HTTP 요청을 읽고 처리합니다.
-- 요청 파싱: 메서드, URI, 헤더, 본문을 추출하고 분석
-- 라우팅: URI에 따라 적절한 핸들러로 요청 전달
-- 비즈니스 로직 실행: 데이터베이스 조회, 외부 API 호출 등
-- 응답 생성: 처리 결과를 바탕으로 HTTP 응답 메시지 구성
+## HTTP 메서드의 동작
+주요 HTTP 메서드의 동작 원리
+### GET
+리소스 조회에 사용됩니다. 멱등성(idempotent)을 가지며, 캐시 가능합니다.
+```java
+@GetMapping("/users/{id}")
+public ResponseEntity<User> getUser(@PathVariable Long id) {
+    User user = userService.findById(id);
+    return ResponseEntity.ok(user);
+}
+```
+### POST
+리소스 생성에 사용됩니다. 비멱등적이며, 일반적으로 캐시되지 않습니다.
+```java
+@PostMapping("/users")
+public ResponseEntity<User> createUser(@RequestBody User user) {
+    User createdUser = userService.create(user);
+    return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+}
+```
+### PUT
+리소스 갱신에 사용됩니다. 멱등성을 가집니다.
+```java
+@PutMapping("/users/{id}")
+public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+    User updatedUser = userService.update(id, user);
+    return ResponseEntity.ok(updatedUser);
+}
+```
+## 상태 관리 메커니즘
+HTTP는 기본적으로 무상태(stateless) 프로토콜이지만, 다음과 같은 방법으로 상태를 관리합니다.
+### 쿠키(Cookie)
+서버가 클라이언트에 상태 정보를 저장하는 메커니즘입니다.
+```java
+@GetMapping("/login")
+public ResponseEntity<String> login(HttpServletResponse response) {
+    Cookie cookie = new Cookie("sessionId", generateSessionId());
+    cookie.setMaxAge(3600);
+    response.addCookie(cookie);
+    return ResponseEntity.ok("Logged in");
+}
+```
+### 세션(Session)
+서버 측에서 클라이언트의 상태를 유지하는 메커니즘입니다.
+```java
+
+@GetMapping("/dashboard")
+public ResponseEntity<String> dashboard(HttpSession session) {
+    String userId = (String) session.getAttribute("userId");
+    if (userId == null) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not logged in");
+    }
+    return ResponseEntity.ok("Welcome, user " + userId);
+}
+```
+## 캐싱 메커니즘
+HTTP는 성능 향상을 위해 다양한 캐싱 전략을 제공합니다.
+### ETag
+리소스의 특정 버전에 대한 식별자입니다.
+```java
+@GetMapping("/articles/{id}")
+public ResponseEntity<Article> getArticle(@PathVariable Long id, @RequestHeader("If-None-Match") String ifNoneMatch) {
+  Article article = articleService.findById(id);
+  String etag = generateETag(article);
+
+  if (etag.equals(ifNoneMatch)) {
+    return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
+  }
+
+  return ResponseEntity.ok().eTag(etag).body(article);
+}
+```
+### Cache-Control
+캐시 동작을 지정하는 헤더입니다.
+```java
+@GetMapping("/static-content")
+public ResponseEntity<String> getStaticContent() {
+    String content = "This content can be cached";
+    return ResponseEntity.ok()
+        .cacheControl(CacheControl.maxAge(1, TimeUnit.HOURS))
+        .body(content);
+}
+```
+## 네트워크 레벨에서의 HTTP 동작
+실제 네트워크에서 HTTP가 어떻게 동작하는지 살펴보겠습니다.
+1. DNS 조회: 도메인 이름을 IP 주소로 변환
+2. TCP 연결 설정 (3-way handshake)
+3. HTTP 요청 전송
+4. 서버의 요청 처리
+5. HTTP 응답 전송
+6. 연결 종료 또는 유지(Keep-Alive)
+```java
+public class HTTPSimulation {
+    public static void main(String[] args) {
+        // 1. DNS 조회
+        InetAddress address = InetAddress.getByName("www.example.com");
+        
+        // 2. TCP 연결 설정
+        Socket socket = new Socket(address, 80);
+        
+        // 3. HTTP 요청 전송
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        out.println("GET / HTTP/1.1");
+        out.println("Host: www.example.com");
+        out.println();
+        
+        // 4&5 서버의 응답 수신
+        BufferedReader in = new BufferdReader(new InputStreamReader(socket.getInputStream()));
+        String line;
+        while ((line = in.readLine()) != null) {
+          System.out.println(line);
+        }
+        
+        // 6. 연결 종료
+        socket.close();
+    }
+}
+```
+## 서버 측 처리 과정
+서버에서 HTTP 요청을 처리하는 일반적인 단계는 다음과 같습니다.
+1. 요청 파싱
+2. 라우팅
+3. 인증/인가 (필요시)
+4. 비즈니스 로직 처리
+5. 응답 생성
+```java
+@WebServlet("/example")
+public class ExampleServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 1. 요청 파싱 (서블릿 컨테이너가 수행)
+        // 2. 라우팅 (서블릿 매핑에 의해 이미 수행됨)
+        // 3. 인증/인가
+        if (!isAuthorized(request)) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+        }
+        // 4. 비즈니스 로직 처리
+        String result = processBusinessLogic(request);
+        
+        // 5. 응답 생성
+        response.setContentType("text/plain");
+        response.getWriter().write(result);
+    }
+}
+```

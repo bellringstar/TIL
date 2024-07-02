@@ -12,8 +12,8 @@ ServerSocket이 연결을 준비한다면 여기서 accept()메서드로 연결�
 - close(): 소켓 연결을 닫습니다.
 ### 3. 소켓 연결 설정
 - setSoTimeout(int timeout): 읽기 작업의 타임아웃을 설정합니다.
-- setTcpNoDelay(boolean on): TCP_NODELAY 옵션을 설정합니다.(Nagle 알고리즘 제어)
-- setKeepAlive(boolean on): SO_KEEPALIVE 옵션을 설정합니다.
+- setTcpNoDelay(boolean on): TCP_NODELAY 옵션을 설정합니다.(Nagle 알고리즘 제어) -> 지연시간 감소 but 네트워크 오버헤드
+- setKeepAlive(boolean on): SO_KEEPALIVE 옵션을 설정합니다. -> HTTP keepalive와 다른 네트워크 수준에서 동작. 비활성 연결이 여전히 유효한지 확인하는 것
 ```java
 SeverSocket serverSocket = new ServerSocket(8080);
 Socket clientSocket = serverSocket.accetp();
@@ -46,7 +46,7 @@ clientSocket.close();
 - 소켓은 응용 계층과 전송 계층 사이의 추상화 계층입니다.
 - TCP/IP 스택에서 운영체제 커널과 사용자 공간 애플리케이션 사이의 인터페이스 역할을 합니다.
 ### 2. 소켓의 내부 구조
-- 파일 디스크립터: 운영체제 수준에서 소켓은 파일 디스키립터로 표현됩니다.
+- 파일 디스크립터: 운영체제 수준에서 소켓은 파일 디스크립터로 표현됩니다.
 - 프로토콜 제어 블록(PCB): TCP 연결 상태, 시퀀스 번호, 윈도우 크기 등의 정보를 저장합니다.
 - 송수신 버퍼: 커널 공간에 위치하며, 데이터의 임시 저장소 역할을 합니다.
 ### 3. 소켓 생성 과정

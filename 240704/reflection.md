@@ -73,52 +73,6 @@ public class UserService {
     SimpleInjector injector = new SimpleInjector();
     UserService userService = injector.inject(UserService.class);
     
-//------------------------
-public class SimpleInjector {
-
-    public <T> T inject(Class<T> clazz) throws Exception {
-        // 주입하려는 클래스의 인스턴스를 생성합니다.
-        T instance = clazz.getDeclaredConstructor().newInstance();
-
-        // 클래스의 모든 필드를 가져옵니다.
-        Field[] fields = clazz.getDeclaredFields();
-
-        for (Field field : fields) {
-            // @Autowired 어노테이션이 붙은 필드를 찾습니다.
-            if (field.isAnnotationPresent(Autowired.class)) {
-                // 필드의 접근 제어자가 private인 경우에도 접근 가능하게 합니다.
-                field.setAccessible(true);
-
-                // 필드의 타입을 가져옵니다.
-                Class<?> fieldType = field.getType();
-
-                // 필드 타입의 인스턴스를 생성합니다 (재귀적으로 의존성 주입).
-                Object fieldInstance = inject(fieldType);
-
-                // 생성된 인스턴스를 필드에 주입합니다.
-                field.set(instance, fieldInstance);
-            }
-        }
-
-        return instance;
-    }
-}
-
-// 사용 예시
-@Service
-public class UserService {
-    @Autowired
-    private UserRepository userRepository;
-
-    public User getUser(Long id) {
-        return userRepository.findById(id);
-    }
-}
-
-    // 의존성 주입 실행
-    SimpleInjector injector = new SimpleInjector();
-    UserService userService = injector.inject(UserService.class);
-    
 //----어노테이션 처리기
 public class AnnotationProcessor {
 

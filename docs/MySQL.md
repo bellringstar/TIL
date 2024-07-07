@@ -7,10 +7,10 @@
 - MySQL 클라이언트 도구 사용법
 
 ## 2. SQL 기초
-- SQL 문법 기초
-- SELECT 문 및 기본 쿼리 작성
-- 데이터 조작어(DML): INSERT, UPDATE, DELETE
-- 데이터 정의어(DDL): CREATE, ALTER, DROP
+- [SQL 문법 기초](../240707/SQL기초.md)
+- [SELECT 문 및 기본 쿼리 작성](../240707/SELECT문_기본쿼리.md)
+- [데이터 조작어(DML): INSERT, UPDATE, DELETE](../240707/DML.md)
+- [데이터 정의어(DDL): CREATE, ALTER, DROP](../240707/DDL.md)
 
 ## 3. MySQL 데이터 타입 및 테이블 설계
 - 숫자, 문자열, 날짜/시간 타입

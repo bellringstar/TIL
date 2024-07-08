@@ -24,6 +24,9 @@
 ### [명령어 병렬 처리 기법](./240629/ILP.md)
 ### [ISA -> CISC/RISC](./240629/ISA.md)
 
+## 운영체제
+### [동기,비동기 / blocking,non-blocking](./240708/동기_비동기.md)
+
 ## 네트워크
 ### [TCP/UDP](./240707/TCP_UDP.md)
 

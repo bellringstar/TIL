@@ -32,6 +32,7 @@
 
 ## 데이터베이스
 ### [MySQL 정복하기](./docs/MySQL.md)
+### [인덱스](./240709/index.md)
 
 ## 자료 구조
 ### [B-Tree,B+Tree](./240630/B-Tree,B+Tree.md)

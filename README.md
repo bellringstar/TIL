@@ -42,6 +42,9 @@
 ## 설정
 ### [hibernate.jdbc.batch_size](./240630/hibernate.jdbc.batch_size.md)
 ### [OSIV](./240713/OSIV.md)
+
+## 기능
+### [ApplicationEventPublisher](./240713/ApplicationEventPublisher.md)
 ---
 # Web
 ## [WAS](./docs/WAS.md)

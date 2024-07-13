@@ -41,12 +41,13 @@
 # Spring
 ## 설정
 ### [hibernate.jdbc.batch_size](./240630/hibernate.jdbc.batch_size.md)
+### [OSIV](./240713/OSIV.md)
 ---
 # Web
 ## [WAS](./docs/WAS.md)
 ---
 # 방법론
-## DDD
+## [DDD](./240713/DDD.md)
 ---
 # Cache
 ### [Thundering Herd](./240626/Thundering-Herd.md)

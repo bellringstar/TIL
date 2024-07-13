@@ -50,7 +50,8 @@
 ## [WAS](./docs/WAS.md)
 ---
 # 방법론
-## [DDD](./240713/DDD.md)
+### [DDD](./240713/DDD.md)
+### [CQRS](./240713/CQRS.md)
 ---
 # Cache
 ### [Thundering Herd](./240626/Thundering-Herd.md)

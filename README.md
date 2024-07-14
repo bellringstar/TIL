@@ -51,7 +51,7 @@
 ---
 # 방법론
 ### [DDD](./240713/DDD.md)
-- [Hexagonal]
+- [Hexagonal](./240714/Hexagonal.md)
 - [CQRS](./240713/CQRS.md)
 ---
 # Cache

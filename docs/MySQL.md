@@ -24,9 +24,9 @@
 - [UNION, INTERSECT, EXCEPT](../240715/UNION_INTERSECT_EXCEPT.md)
 
 ## 5. 인덱스 및 성능 최적화 기초
-- 인덱스 개념 및 유형
-- 인덱스 생성 및 관리
-- EXPLAIN 명령어 사용법
+- [인덱스 개념 및 유형](../240715/INDEX1.md)
+- [인덱스 생성 및 관리](../240715/INDEX2.md)
+- [EXPLAIN 명령어 사용법](../240715/INDEX3.md)
 - 쿼리 최적화 기본 기법
 
 ## 6. 트랜잭션 및 동시성 제어

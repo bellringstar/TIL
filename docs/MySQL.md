@@ -18,10 +18,10 @@
 - [정규화와 비정규화](../240708/정규화_비정규화.md)
 
 ## 4. MySQL 고급 쿼리 기법
-- 조인(JOIN) 유형 및 사용법
-- 서브쿼리 및 상관 서브쿼리
-- 집계 함수 및 GROUP BY
-- UNION, INTERSECT, EXCEPT
+- [조인(JOIN) 유형 및 사용법](../240715/JOIN.md)
+- [서브쿼리 및 상관 서브쿼리](../240715/SUB_QUERY.md)
+- [집계 함수 및 GROUP BY](../240715/Aggregate&GROUP_BY.md)
+- [UNION, INTERSECT, EXCEPT](../240715/UNION_INTERSECT_EXCEPT.md)
 
 ## 5. 인덱스 및 성능 최적화 기초
 - 인덱스 개념 및 유형

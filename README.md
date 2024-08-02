@@ -29,6 +29,7 @@
 ## 운영체제
 - [동기,비동기 / blocking,non-blocking](./240708/동기_비동기.md)
 - [Thread-safe](./240722/Thread-safe.md)
+- [System Call](./240802/SystemCall.md)
 
 ## 네트워크
 - [TCP/UDP](./240707/TCP_UDP.md)

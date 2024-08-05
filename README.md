@@ -32,6 +32,7 @@
 - [System Call](./240802/SystemCall.md)
 - [Interrupt](./240803/Interrupt.md)
 - [Process](./240804/Process.md)
+- [프로세스의 주소공간](./240805/Process_memory.md)
 
 ## 네트워크
 - [TCP/UDP](./240707/TCP_UDP.md)

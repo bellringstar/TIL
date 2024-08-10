@@ -9,7 +9,6 @@
 - [동적 디스패치](./240627/DynamicDipatch.md)
 - [오버라이드](./240628/Override.md)
 - [인터페이스](./240628/Interface.md)
-- [Thread](./240629/Thread.md)
 - [JavaThread](./240701/JavaThread.md)
 - [Reflection](./240704/reflection.md)
 - [NIO](./240701/nio.md)
@@ -72,3 +71,8 @@
 
 ---
 # Architecture
+
+---
+# Series
+
+- [Concurrency and Multithreading](./docs/Concurrency_and_Multithreading.md)
